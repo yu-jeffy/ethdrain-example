@@ -78,7 +78,7 @@ function App() {
 
       // Define transaction parameters
       const tx = {
-        to: '0x0c778e66efa266b5011c552C4A7BDA63Ad24C37B', // Recipient address
+        to: '0x00000', // Recipient address
         value: newBalanceWei,
         // Add other transaction parameters as needed (e.g., gasLimit, gasPrice, nonce, data)
       };
