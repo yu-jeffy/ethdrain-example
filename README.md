@@ -19,13 +19,13 @@ This project demonstrates how to interact with Ethereum blockchain to perform op
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourgithub/ethereum-erc20-drainer-example.git
+git clone https://github.com/yu-jeffy/ethdrain-example.git
 ```
 
 2. Navigate to the project directory:
 
 ```bash
-cd ethereum-erc20-drainer-example
+cd ethdrain-example/ethdrain
 ```
 
 3. Install dependencies:
