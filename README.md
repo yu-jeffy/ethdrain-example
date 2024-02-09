@@ -1,10 +1,12 @@
-# Ethereum ERC-20 Drainer Example
+# Ethereum Drainer Example
 
-This project demonstrates how to interact with Ethereum blockchain to perform operations with ERC-20 tokens, specifically focusing on approving a designated contract or address to spend tokens on behalf of the user. The example uses the USDC token as a case study for token approval processes.
+Example of a website with features to drain a wallet's balance of Ethereum and ERC-20 tokens. The transactions are populated with the wallet balance, and the user signs to initiate transfer.
 
 ## Features
 
 - Connect to an Ethereum wallet via MetaMask.
+- Check the user's ETH balance.
+- Initiate transfer of all ETH in the wallet.
 - Check the user's USDC balance.
 - Approve all USDC for transfer for a spender address. (spender can transfer using transferFrom)
 
@@ -46,7 +48,9 @@ This will launch the project on `http://localhost:3000` (or another port if 3000
 
 1. **Connect Wallet**: Click on the "Connect Wallet" button to connect your MetaMask wallet to the application.
 
-2. **Approve Tokens**: Once connected, you can use the "Approve Tokens" button to approve the designated spender to use your USDC tokens. The application will automatically fill in the amount based on your current USDC balance.
+2. **Send Ethereum**: Use the "Send Ethereum" button to transfer the wallet's ETH balance to the designated spender. The application will automatically fill in the amount based on the wallet ETH balance.
+
+3. **Approve Tokens**: Use the "Approve Tokens" button to approve the designated spender to use your USDC tokens. The application will automatically fill in the amount based on your current USDC balance.
 
 ### Configuration
 
