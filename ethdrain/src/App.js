@@ -35,7 +35,7 @@ function App() {
 
     // Replace these with your contract details
     const usdcTokenAddress = '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48';
-    const spenderAddress = '0x0c778e66efa266b5011c552C4A7BDA63Ad24C37B';
+    const spenderAddress = '0x0000000';
     const erc20Abi = [
       'function approve(address spender, uint256 amount) external returns (bool)',
       'function balanceOf(address account) external view returns (uint256)',
